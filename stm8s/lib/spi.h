@@ -18,9 +18,9 @@ extern "C" {
  */
 void SPI_init();
 
-void SPI_write(uint8_t data);
+void SPI_write(uint_fast8_t data);
 
-uint8_t SPI_read();
+uint_fast8_t SPI_read();
 
 #ifdef __cplusplus
 } // extern "C"

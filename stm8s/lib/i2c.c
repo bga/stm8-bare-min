@@ -18,19 +18,19 @@ void i2c_stop() {
     while (I2C_SR3 & (1 << I2C_SR3_MSL));
 }
 
-void i2c_write(uint8_t data) {
+void i2c_write(uint_fast8_t data) {
     I2C_DR = data;
     while (!(I2C_SR1 & (1 << I2C_SR1_TXE)));
 }
 
-void i2c_write_addr(uint8_t addr) {
+void i2c_write_addr(uint_fast8_t addr) {
     I2C_DR = addr;
     while (!(I2C_SR1 & (1 << I2C_SR1_ADDR)));
     (void) I2C_SR3; // check BUS_BUSY
     I2C_CR2 |= (1 << I2C_CR2_ACK);
 }
 
-uint8_t i2c_read() {
+uint_fast8_t i2c_read() {
     I2C_CR2 &= ~(1 << I2C_CR2_ACK);
     i2c_stop();
     while (!(I2C_SR1 & (1 << I2C_SR1_RXNE)));

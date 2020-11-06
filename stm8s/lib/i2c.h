@@ -34,14 +34,14 @@ void i2c_stop();
  *
  * @param data
  */
-void i2c_write(uint8_t data);
+void i2c_write(uint_fast8_t data);
 
 /**
  * Write slave address.
  *
  * @param addr slave address (must be shifted!)
  */
-void i2c_write_addr(uint8_t addr);
+void i2c_write_addr(uint_fast8_t addr);
 
 /**
  * Read >= 2 bytes. STOP is generated automatically.
@@ -54,7 +54,7 @@ void i2c_read_arr(uint8_t *buf, int len);
 /*
  * Read one byte. STOP is generated automatically.
  */
-uint8_t i2c_read();
+uint_fast8_t i2c_read();
 
 #ifdef __cplusplus
 } // extern "C"
