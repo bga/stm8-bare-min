@@ -3,6 +3,14 @@
 
 #include <stdint.h>
 
+struct GPIO_TypeDef {
+	uint8_t ODR;
+	uint8_t IDR;
+	uint8_t DDR;
+	uint8_t CR1;
+	uint8_t CR2;
+};
+
 #define _MEM_(mem_addr)      (*(volatile uint8_t *)(mem_addr))
 #define _SFR_(mem_addr)      (*(volatile uint8_t *)((mem_addr)))
 #define _SFR16_(mem_addr)    (*(volatile uint16_t *)((mem_addr)))
