@@ -10,6 +10,19 @@ extern "C" {
 #define EEPROM_START_ADDR      0x4000
 #define EEPROM_END_ADDR        0x407F
 
+#if 0
+  EEMEM Settings settings;
+#endif
+
+#ifdef __ICCSTM8__
+  #define EEMEM __eeprom
+#endif //# __ICCSTM8__
+
+#ifdef __SDCC__
+  #define EEMEM __at(EEPROM_START_ADDR)
+#endif //# __SDCC__
+
+
 /* Option bytes */
 #define OPT0                   _MEM_(0x4800)
 #define OPT1                   _MEM_(0x4801)
