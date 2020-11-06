@@ -3,6 +3,11 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #define I2C_READ            0x01
 #define I2C_WRITE           0x00
 
@@ -50,6 +55,11 @@ void i2c_read_arr(uint8_t *buf, int len);
  * Read one byte. STOP is generated automatically.
  */
 uint8_t i2c_read();
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
 
 #endif /* I2C_H */
 

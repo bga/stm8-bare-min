@@ -3,6 +3,10 @@
 
 #include "stm8s.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define EEPROM_START_ADDR      0x4000
 #define EEPROM_END_ADDR        0x407F
 
@@ -42,5 +46,9 @@ void eeprom_lock();
  * Not necessary on devices with no RWW support.
  */
 void eeprom_wait_busy();
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
 
 #endif /* EEPROM_H */

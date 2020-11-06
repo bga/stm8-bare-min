@@ -3,6 +3,10 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*
  * Initialize SPI in MODE1.
  *
@@ -17,6 +21,10 @@ void SPI_init();
 void SPI_write(uint8_t data);
 
 uint8_t SPI_read();
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
 
 #endif /* SPI_H */
 

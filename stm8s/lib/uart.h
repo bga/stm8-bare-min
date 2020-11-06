@@ -19,10 +19,18 @@
  * PD5 -> TX
  * PD6 -> RX
  */
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void uart_init();
 
 void uart_write(uint8_t data);
 
 uint8_t uart_read();
 
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* UART_H */
