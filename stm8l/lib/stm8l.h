@@ -3,6 +3,37 @@
 
 #include <stdint.h>
 
+#if 0
+ISR(TIM4_ISR) {
+
+}
+#endif
+
+#ifndef STR
+	#define STR(x) _STR(x)
+	#define _STR(x) #x
+#endif
+
+#ifndef CONCAT
+	#define CONCAT(a, b) _CONCAT(a, b)
+	#define _CONCAT(a, b) a ## b
+#endif
+
+#ifndef PRAGMA
+	#define PRAGMA(xArg) _Pragma(STR(xArg))
+#endif
+
+#ifdef __ICCSTM8__
+	#define ISR(vectorArg) PRAGMA(vector = vectorArg + 2) \
+		__interrupt void CONCAT(CONCAT(_, vectorArg), _vector) (void)
+#endif //# __ICCSTM8__
+
+#ifdef __SDCC__
+	#define ISR(vectorArg) \
+	void CONCAT(CONCAT(_, vectorArg), _vector)(void) __interrupt(vectorArg)
+#endif //# __SDCC__
+
+
 typedef struct GPIO_TypeDef {
 	uint8_t ODR;
 	uint8_t IDR;
