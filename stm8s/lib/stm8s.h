@@ -698,6 +698,8 @@ typedef struct GPIO_TypeDef {
 #endif
 
 //# use static inline function for intrinsic instructions instead macro. Any inline asm inside function disable code optimization
+//# TODO __get_interrupt_state, __set_interrupt_state, __istate_t
+
 #if defined (__ICCSTM8__)
 	#include <intrinsics.h>
 
@@ -705,12 +707,18 @@ typedef struct GPIO_TypeDef {
 	static inline void disable_interrupts() { __enable_interrupt(); }   
 	static inline void nop() { __no_operation(); }                   
 	static inline void halt() { __halt(); }
+	static inline void trap() { __trap(); }
+	static inline void wait_for_exception() { __wait_for_exception(); }
+	static inline void wait_for_interrupt() { __wait_for_interrupt(); }
 #elif defined (__SDCC_stm8)
 	/* misc inline macros */
 	static inline void enable_interrupts() { __asm__("rim"); }
 	static inline void disable_interrupts() { __asm__("sim"); }   
 	static inline void nop() { __asm__("nop"); }                   
 	static inline void halt() { __asm__("halt"); }
+	static inline void trap() { __asm__("trap"); }
+	static inline void wait_for_exception() { __asm__("wfe"); }
+	static inline void wait_for_interrupt() { __asm__("wfi"); }
 #endif
 
 #endif /* STM8S_H */
