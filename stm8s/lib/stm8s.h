@@ -28,10 +28,10 @@ ISR(TIM4_ISR) {
 		__interrupt void CONCAT(CONCAT(_, vectorArg), _vector) (void)
 #endif //# __ICCSTM8__
 
-#ifdef __SDCC__
+#ifdef __SDCC_stm8
 	#define ISR(vectorArg) \
 	void CONCAT(CONCAT(_, vectorArg), _vector)(void) __interrupt(vectorArg)
-#endif //# __SDCC__
+#endif //# __SDCC_stm8
 
 
 typedef struct GPIO_TypeDef {
@@ -705,7 +705,7 @@ typedef struct GPIO_TypeDef {
 	static inline void disable_interrupts() { __enable_interrupt(); }   
 	static inline void nop() { __no_operation(); }                   
 	static inline void halt() { __halt(); }
-#elif defined (__SDCC__)
+#elif defined (__SDCC_stm8)
 	/* misc inline macros */
 	static inline void enable_interrupts() { __asm__("rim"); }
 	static inline void disable_interrupts() { __asm__("sim"); }   
