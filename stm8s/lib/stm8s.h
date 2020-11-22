@@ -708,7 +708,7 @@ typedef struct GPIO_TypeDef {
 	static inline void nop() { __no_operation(); }                   
 	static inline void halt() { __halt(); }
 	static inline void trap() { __trap(); }
-	static inline void wait_for_exception() { __wait_for_exception(); }
+	static inline void wait_for_event() { __wait_for_event(); }
 	static inline void wait_for_interrupt() { __wait_for_interrupt(); }
 #elif defined (__SDCC_stm8)
 	/* misc inline macros */
@@ -717,7 +717,7 @@ typedef struct GPIO_TypeDef {
 	static inline void nop() { __asm__("nop"); }                   
 	static inline void halt() { __asm__("halt"); }
 	static inline void trap() { __asm__("trap"); }
-	static inline void wait_for_exception() { __asm__("wfe"); }
+	static inline void wait_for_event() { __asm__("wfe"); }
 	static inline void wait_for_interrupt() { __asm__("wfi"); }
 #endif
 
