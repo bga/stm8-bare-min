@@ -3,6 +3,12 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+namespace Stm8Hal {
+extern "C" {
+#endif
+
+
 #if 0
 ISR(TIM4_ISR) {
 
@@ -719,6 +725,11 @@ typedef struct GPIO_TypeDef {
 	static inline void trap() { __asm__("trap"); }
 	static inline void wait_for_event() { __asm__("wfe"); }
 	static inline void wait_for_interrupt() { __asm__("wfi"); }
+#endif
+
+#ifdef __cplusplus
+} // extern "C"
+} // namespace Stm8Hal
 #endif
 
 #endif /* STM8S_H */
